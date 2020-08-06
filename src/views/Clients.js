@@ -2,11 +2,13 @@ import React, { Component } from 'react'
 import { thClientArray } from '../variables/Variables'
 import axios from 'axios'
 import { axiosURL } from '../variables/Variables'
-import AddClientForm from '../components/Forms/addClient'
+import ClientForm from '../components/Forms/ClientForm'
 
 class Clients extends Component {
   state = {
     clients: null,
+    form: null,
+    isEditing: false
   }
 
   componentDidMount() {
@@ -20,9 +22,40 @@ class Clients extends Component {
       })
   }
 
-  addCliendHandler = (client) => {
-    const clients = [...this.state.clients, client]
-    this.setState({ clients })
+  createClientHanlder = (client) => {
+    const {name, lastname, email} = client
+    axios
+      .post(axiosURL.clients, {name, lastname, email})
+      .then((res) => {
+        const clients = [...this.state.clients, res.data]
+        this.setState({ clients })
+      })
+      .catch(({ response }) => {
+        console.log('Create error:', response)
+      })
+  }
+
+  updateClientHandler = (_client) => {
+    const {id, name, lastname, email} = _client
+    axios
+      .patch(axiosURL.clients + '/' + id, {
+        name,
+        lastname,
+        email
+      })
+      .then((res) => {
+        this.setState(prevState => ({
+          clients: prevState.clients.map((client) => {
+            if(client.id === _client.id) {
+              client = _client
+            }
+            return client
+          })
+        }))
+      })
+      .catch(({ response }) => {
+        console.log('Update error:', response)
+      })
   }
 
   deleteClientHandler = (id) => {
@@ -34,12 +67,21 @@ class Clients extends Component {
         }))
       })
       .catch((err) => {
-        console.log('Error Cliente:', err.response)
+        console.log('Delete error:', err.response)
       })
+  }
+
+  editHandler = (client) => {
+    this.setState({form: client, isEditing: true})
+  }
+
+  dismissEditHandler = () => {
+    this.setState({form: null, isEditing: false})
   }
 
   render() {
     let clients = null
+    let editForm = null
 
     if (this.state.clients) {
       clients = (
@@ -60,7 +102,7 @@ class Clients extends Component {
                   <td>{client.lastname}</td>
                   <td>{client.email}</td>
                   <td>
-                    <button>Editar</button>
+                    <button onClick={() => this.editHandler(client)}>Editar</button>
                     <button onClick={() => this.deleteClientHandler(client.id)}>
                       Eliminar
                     </button>
@@ -73,13 +115,23 @@ class Clients extends Component {
       )
     }
 
+    if (this.state.isEditing) {
+      editForm = (
+        <ClientForm 
+          {...this.state.form} 
+          submit={(client) => {this.updateClientHandler(client)}}
+          dismiss={this.dismissEditHandler}/>
+      )
+    }
+
     return (
       <div>
         Clients
-        <AddClientForm 
-          submit={(client) => this.addCliendHandler(client)} 
+        <ClientForm 
+          submit={(client) => this.createClientHanlder(client)}
           />
         {clients}
+        {editForm}
       </div>
     )
   }

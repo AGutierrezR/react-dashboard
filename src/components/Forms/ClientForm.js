@@ -1,12 +1,11 @@
 import React, { Component } from 'react'
-import axios from 'axios'
-import { axiosURL } from '../../variables/Variables'
 
-class AddClientForm extends Component {
+class ClientForm extends Component {
   state = {
-    name: '',
-    lastname: '',
-    email: '',
+    id: this.props.id,
+    name: this.props.name || '',
+    lastname: this.props.lastname || '',
+    email: this.props.email || '',
   }
 
   onChangeHandler = (event) => {
@@ -16,20 +15,8 @@ class AddClientForm extends Component {
   }
 
   onSubmitHandler = (event) => {
-    const { name, lastname, email } = this.state
-    axios
-      .post(axiosURL.clients, {
-        name: name,
-        lastname: lastname,
-        email: email,
-      })
-      .then((res) => {
-        this.props.submit(res.data)
-      })
-      .catch(({ response }) => {
-        console.log('Agregar cliente error:', response)
-      })
     event.preventDefault()
+    this.props.submit(this.state)
   }
 
   render() {
@@ -40,14 +27,16 @@ class AddClientForm extends Component {
           type="text" 
           name="name" 
           placeholder="Nombre" 
-          onChange={this.onChangeHandler} 
+          onChange={this.onChangeHandler}
+          value={this.state.name}
           required/>
 
         <input 
           type="text" 
           name="lastname" 
           placeholder="Apellidos" 
-          onChange={this.onChangeHandler} 
+          onChange={this.onChangeHandler}
+          value={this.state.lastname}
           required/>
 
         <input 
@@ -55,13 +44,15 @@ class AddClientForm extends Component {
           name="email" 
           placeholder="Correo" 
           onChange={this.onChangeHandler} 
+          value={this.state.email}
           required/>
 
         <button type="submit">Agregar Cliente</button>
+        <button onClick={this.props.dismiss}>Cancelar</button>
         
       </form>
     )
   }
 }
 
-export default AddClientForm
+export default ClientForm
