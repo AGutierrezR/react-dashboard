@@ -1,0 +1,64 @@
+{
+  "clients": [
+    {
+      "id": 1,
+      "name": "Guthrie",
+      "lastname": "Poole Bray",
+      "email": "guthriebray@vendblend.com"
+    },
+    {
+      "id": 2,
+      "name": "Summer",
+      "lastname": "Rivera Mullins",
+      "email": "summermullins@vendblend.com"
+    },
+    {
+      "id": 3,
+      "name": "Blankenship",
+      "lastname": "Lambert Rosario",
+      "email": "blankenshiprosario@vendblend.com"
+    },
+    {
+      "id": 4,
+      "name": "Imelda",
+      "lastname": "Patton Anderson",
+      "email": "imeldaanderson@vendblend.com"
+    },
+    {
+      "id": 5,
+      "name": "Dawson",
+      "lastname": "Fox Dennis",
+      "email": "dawsondennis@vendblend.com"
+    },
+    {
+      "id": 6,
+      "name": "Ina",
+      "lastname": "Montoya Randolph",
+      "email": "inarandolph@vendblend.com"
+    },
+    {
+      "id": 7,
+      "name": "Moon",
+      "lastname": "Gregory Casey",
+      "email": "mooncasey@vendblend.com"
+    },
+    {
+      "id": 8,
+      "name": "Barnett",
+      "lastname": "Schwartz Larsen",
+      "email": "barnettlarsen@vendblend.com"
+    },
+    {
+      "id": 9,
+      "name": "Rosanne",
+      "lastname": "Pacheco Simon",
+      "email": "rosannesimon@vendblend.com"
+    },
+    {
+      "id": 10,
+      "name": "Potter",
+      "lastname": "Castro Watson",
+      "email": "potterwatson@vendblend.com"
+    }
+  ]
+}
