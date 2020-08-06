@@ -22,10 +22,12 @@ class Admin extends Component {
 
   render() {
     return (
-      <div>
+      <div className="wrapper">
         Admin Layout
         <Sidebar routes={routes} />
-        <Switch>{this.getRoutes(routes)}</Switch>
+        <div id="main-panel" className="main-panel">
+          <Switch>{this.getRoutes(routes)}</Switch>
+        </div>
       </div>
     )
   }

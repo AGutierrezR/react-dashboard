@@ -125,7 +125,7 @@ class Products extends Component {
     }
 
     return (
-      <div>
+      <div className="content">
         Products
         <ProductForm 
           submit={(product) => this.createProductHandler(product)}

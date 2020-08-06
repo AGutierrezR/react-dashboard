@@ -125,7 +125,7 @@ class Clients extends Component {
     }
 
     return (
-      <div>
+      <div className="content">
         Clients
         <ClientForm 
           submit={(client) => this.createClientHanlder(client)}

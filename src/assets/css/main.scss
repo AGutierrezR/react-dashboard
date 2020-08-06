@@ -1,0 +1,15 @@
+.main-panel {
+  margin-left: 260px;
+  padding: 1rem;
+
+  > .content {
+    padding: 32px 16px;
+  }
+}
+
+.sidebar {
+  width: 260px;
+  height: 100vh;
+  position: fixed;
+  background: lightgrey;
+}

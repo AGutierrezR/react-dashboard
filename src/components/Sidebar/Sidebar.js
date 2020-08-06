@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 
 const Sidebar = (props) => {
   return (
-    <div>
+    <div className="sidebar">
       Sidebar
       <ul>
       {props.routes.map((prop, key) => {
