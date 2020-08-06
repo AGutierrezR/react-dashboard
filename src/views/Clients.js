@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { thClientArray } from '../variables/Variables'
 import axios from 'axios'
+import { axiosURL } from '../variables/Variables'
+import AddClientForm from '../components/Forms/addClient'
 
 class Clients extends Component {
   state = {
@@ -9,7 +11,7 @@ class Clients extends Component {
 
   componentDidMount() {
     axios
-      .get('http://localhost:3001/clients')
+      .get(axiosURL.clients)
       .then((res) => {
         this.setState({ clients: res.data })
       })
@@ -18,17 +20,22 @@ class Clients extends Component {
       })
   }
 
+  addCliendHandler = (client) => {
+    const clients = [...this.state.clients, client]
+    this.setState({ clients })
+  }
+
   deleteClientHandler = (id) => {
     axios
-    .delete('http://localhost:3001/clients/' + id)
-    .then((res) => {
-      this.setState(({ clients }) => ({
-        clients: clients.filter((person, _) => person.id !== id),
-      }))
-    })
-    .catch((err) => {
-      console.log('Error Cliente:', err.response)
-    })
+      .delete(axiosURL.clients + '/' + id)
+      .then((res) => {
+        this.setState(({ clients }) => ({
+          clients: clients.filter((person, _) => person.id !== id),
+        }))
+      })
+      .catch((err) => {
+        console.log('Error Cliente:', err.response)
+      })
   }
 
   render() {
@@ -54,7 +61,9 @@ class Clients extends Component {
                   <td>{client.email}</td>
                   <td>
                     <button>Editar</button>
-                    <button onClick={() => this.deleteClientHandler(client.id)} >Eliminar</button>
+                    <button onClick={() => this.deleteClientHandler(client.id)}>
+                      Eliminar
+                    </button>
                   </td>
                 </tr>
               )
@@ -67,6 +76,9 @@ class Clients extends Component {
     return (
       <div>
         Clients
+        <AddClientForm 
+          submit={(client) => this.addCliendHandler(client)} 
+          />
         {clients}
       </div>
     )
