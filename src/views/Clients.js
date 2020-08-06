@@ -17,7 +17,20 @@ class Clients extends Component {
         console.log(err.response)
       })
   }
-  
+
+  deleteClientHandler = (id) => {
+    axios
+    .delete('http://localhost:3001/clients/' + id)
+    .then((res) => {
+      this.setState(({ clients }) => ({
+        clients: clients.filter((person, _) => person.id !== id),
+      }))
+    })
+    .catch((err) => {
+      console.log('Error Cliente:', err.response)
+    })
+  }
+
   render() {
     let clients = null
 
@@ -41,7 +54,7 @@ class Clients extends Component {
                   <td>{client.email}</td>
                   <td>
                     <button>Editar</button>
-                    <button>Eliminar</button>
+                    <button onClick={() => this.deleteClientHandler(client.id)} >Eliminar</button>
                   </td>
                 </tr>
               )
