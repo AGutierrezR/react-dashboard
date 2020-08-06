@@ -1,4 +1,66 @@
 {
+  "products": [
+    {
+      "id": 1,
+      "name": "Rich",
+      "company": "Radiantix",
+      "price": 630.12
+    },
+    {
+      "id": 2,
+      "name": "Tucker",
+      "company": "Coash",
+      "price": 422.32
+    },
+    {
+      "id": 3,
+      "name": "Kelly",
+      "company": "Dyno",
+      "price": 595.32
+    },
+    {
+      "id": 4,
+      "name": "West",
+      "company": "Remold",
+      "price": 437.01
+    },
+    {
+      "id": 5,
+      "name": "Vasquez",
+      "company": "Prosely",
+      "price": 609.62
+    },
+    {
+      "id": 6,
+      "name": "Slater",
+      "company": "Xoggle",
+      "price": 1587.46
+    },
+    {
+      "id": 7,
+      "name": "Miller",
+      "company": "Talae",
+      "price": 911.33
+    },
+    {
+      "id": 8,
+      "name": "Roberson",
+      "company": "Optyk",
+      "price": 1090.78
+    },
+    {
+      "id": 9,
+      "name": "Minnie",
+      "company": "Limage",
+      "price": "800"
+    },
+    {
+      "id": 10,
+      "name": "Sanford",
+      "company": "Tourmania",
+      "price": 746.1
+    }
+  ],
   "clients": [
     {
       "id": 1,
@@ -56,9 +118,11 @@
     },
     {
       "id": 10,
-      "name": "Potter",
+      "name": "Sanford",
       "lastname": "Castro Watson",
-      "email": "potterwatson@vendblend.com"
+      "email": "potterwatson@vendblend.com",
+      "company": "Tourmania",
+      "price": 746.1
     }
   ]
 }
