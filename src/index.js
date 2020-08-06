@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import './assets/css/main.scss'
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import * as serviceWorker from './serviceWorker';
 import AdminLayout from './layouts/Admin';
