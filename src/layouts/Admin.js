@@ -23,7 +23,6 @@ class Admin extends Component {
   render() {
     return (
       <div className="wrapper">
-        Admin Layout
         <Sidebar routes={routes} />
         <div id="main-panel" className="main-panel">
           <Switch>{this.getRoutes(routes)}</Switch>

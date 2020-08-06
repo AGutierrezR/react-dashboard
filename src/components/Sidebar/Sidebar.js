@@ -4,14 +4,14 @@ import { NavLink } from "react-router-dom";
 const Sidebar = (props) => {
   return (
     <div className="sidebar">
-      Sidebar
-      <ul>
+      <ul className="nav">
       {props.routes.map((prop, key) => {
         return (
           <li key={key}>
             <NavLink
-              to={prop.layout + prop.path}>
-
+              to={prop.layout + prop.path}
+              className="nav-link"
+              activeClassName="active">
               {prop.name}
             </NavLink>
           </li>
