@@ -2,4 +2,10 @@
   width: 260px;
   height: 100vh;
   position: fixed;
+  z-index: 100;
+  transform: translateX(-100%);
+
+  @media (min-width: 992px) {
+    transform: translateX(0);
+  }
 }

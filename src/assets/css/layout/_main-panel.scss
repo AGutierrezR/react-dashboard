@@ -1,8 +1,12 @@
 .main-panel {
-  margin-left: 260px;
+  // margin-left: 260px;
   padding: 1rem;
 
   > .content {
     padding: 16px;
+  }
+
+  @media (min-width: 992px) {
+    margin-left: 260px;
   }
 }
