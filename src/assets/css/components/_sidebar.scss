@@ -1,5 +1,5 @@
 .sidebar {
-  background: #d3d3d3;
+  background: #333333;
   padding-top: 16px;
   padding-bottom: 16px;
 
@@ -16,9 +16,11 @@
     position: relative;
     display: block;
     padding: 10px 15px;
+    color: #F1F1F1;
 
     &.active {
-      background: #c2c2c2;
+      background: #F1F1F1;
+      color: #333333
     }
   }
 }
