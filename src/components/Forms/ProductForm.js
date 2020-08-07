@@ -21,36 +21,56 @@ class ProductForm extends Component {
 
   render() {
     return (
-      <form onSubmit={this.onSubmitHandler}>
+      <div>
+        <h3>{this.props.title}</h3>
+        <form onSubmit={this.onSubmitHandler}>
+          <div className="form-group">
+            <input 
+              className="form-control"
+              type="text" 
+              name="name" 
+              placeholder="Nombre" 
+              onChange={this.onChangeHandler}
+              value={this.state.name}
+              required/>
+          </div>
 
-        <input 
-          type="text" 
-          name="name" 
-          placeholder="Nombre" 
-          onChange={this.onChangeHandler}
-          value={this.state.name}
-          required/>
+          <div className="form-group">
+            <input 
+              className="form-control"
+              type="text" 
+              name="company" 
+              placeholder="Compania" 
+              onChange={this.onChangeHandler}
+              value={this.state.company}
+              required/>
+          </div>
 
-        <input 
-          type="text" 
-          name="company" 
-          placeholder="Compania" 
-          onChange={this.onChangeHandler}
-          value={this.state.company}
-          required/>
+          <div className="form-group">
+            <input
+              className="form-control"
+              type="number" 
+              name="price" 
+              placeholder="Precio" 
+              onChange={this.onChangeHandler} 
+              value={this.state.price}
+              required/>
+          </div>
 
-        <input 
-          type="number" 
-          name="price" 
-          placeholder="Precio" 
-          onChange={this.onChangeHandler} 
-          value={this.state.price}
-          required/>
-
-        <button type="submit">Agregar Producto</button>
-        <button onClick={this.props.dismiss}>Cancelar</button>
-        
-      </form>
+          <div>
+            <button className="btn btn-success" type="submit">
+              {this.props.btnLabel}
+            </button>
+            <button
+              className="btn btn-warning ml-1"
+              onClick={this.props.dismiss}
+            >
+              Cancelar
+            </button>
+          </div>
+          
+        </form>
+      </div>
     )
   }
 }
