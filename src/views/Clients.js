@@ -3,12 +3,14 @@ import { thClientArray } from '../variables/Variables'
 import axios from 'axios'
 import { axiosURL } from '../variables/Variables'
 import ClientForm from '../components/Forms/ClientForm'
+import { Modal, ModalBody } from 'reactstrap'
 
 class Clients extends Component {
   state = {
     clients: null,
     form: null,
     isEditing: false,
+    isAdding: false,
   }
 
   componentDidMount() {
@@ -71,12 +73,20 @@ class Clients extends Component {
       })
   }
 
+  addHandler = () => {
+    this.setState({ isAdding: true })
+  }
+
+  closeAddHandler = () => {
+    this.setState({ isAdding: false })
+  }
+
   editHandler = (client) => {
     this.setState({ form: client, isEditing: true })
   }
 
   dismissEditHandler = () => {
-    this.setState({ form: null, isEditing: false })
+    this.setState({isEditing: false, form: null })
   }
 
   render() {
@@ -85,7 +95,7 @@ class Clients extends Component {
 
     if (this.state.clients) {
       clients = (
-        <table className="table table-striped table-hover mt-4 mb-5">
+        <table className="table table-striped table-hover mt-4">
           <thead>
             <tr>
               {thClientArray.map((prop, key) => {
@@ -107,7 +117,7 @@ class Clients extends Component {
                       onClick={() => this.editHandler(client)}
                     >
                       Editar
-                    </button> 
+                    </button>
                     <button
                       className="btn btn-danger ml-1"
                       onClick={() => this.deleteClientHandler(client.id)}
@@ -131,6 +141,8 @@ class Clients extends Component {
             this.updateClientHandler(client)
           }}
           dismiss={this.dismissEditHandler}
+          btnLabel="Modificar"
+          title="Modificar Cliente"
         />
       )
     }
@@ -141,13 +153,35 @@ class Clients extends Component {
           <div className="row">
             <div className="col-md-12">
               <h1>Clientes</h1>
-              <ClientForm
-                submit={(client) => this.createClientHanlder(client)}
-              />
-              <div className="table-responsive">
-                {clients} 
+              <div>
+                <button className="btn btn-success" onClick={this.addHandler}>
+                  +
+                </button>
               </div>
-              {editForm}
+              <Modal
+                isOpen={this.state.isAdding}
+                toggle={this.closeAddHandler}
+                centered
+              >
+                <ModalBody>
+                  <ClientForm
+                    submit={(client) => this.createClientHanlder(client)}
+                    dismiss={this.closeAddHandler}
+                    btnLabel="Agregar"
+                    title="Agregar Cliente"
+                  />
+                </ModalBody>
+              </Modal>
+              <div className="table-responsive">{clients}</div>
+              <Modal
+                isOpen={this.state.isEditing}
+                toggle={this.dismissEditHandler}
+                centered
+              >
+                <ModalBody>
+                  {editForm}
+                </ModalBody>
+              </Modal>
             </div>
           </div>
         </div>
