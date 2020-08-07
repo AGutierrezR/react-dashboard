@@ -1,5 +1,6 @@
 // Para Axios
 const axiosURL = {
+  auth: 'http://localhost:3002/login',
   clients: 'http://localhost:3001/clients',
   products: 'http://localhost:3001/products',
 }
