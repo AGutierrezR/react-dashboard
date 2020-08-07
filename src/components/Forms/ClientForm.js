@@ -22,34 +22,50 @@ class ClientForm extends Component {
   render() {
     return (
       <form onSubmit={this.onSubmitHandler}>
+        <div className="form-group">
+          <label>Nombre</label>
+          <input
+            className="form-control"
+            type="text" 
+            name="name" 
+            placeholder="Joel" 
+            onChange={this.onChangeHandler}
+            value={this.state.name}
+            required/>
+        </div>
 
-        <input 
-          type="text" 
-          name="name" 
-          placeholder="Nombre" 
-          onChange={this.onChangeHandler}
-          value={this.state.name}
-          required/>
+        <div className="form-group">
+          <label>Apellidos</label>
+          <input
+            className="form-control"
+            type="text" 
+            name="lastname" 
+            placeholder="Perez Jimenez" 
+            onChange={this.onChangeHandler}
+            value={this.state.lastname}
+            required/>
+        </div>
 
-        <input 
-          type="text" 
-          name="lastname" 
-          placeholder="Apellidos" 
-          onChange={this.onChangeHandler}
-          value={this.state.lastname}
-          required/>
+        <div className="form-group">
+          <label>Correo</label>
+          <input
+            className="form-control"
+            type="email" 
+            name="email" 
+            placeholder="micorreo@ejemplo.com" 
+            onChange={this.onChangeHandler} 
+            value={this.state.email}
+            required/>
+        </div>
 
-        <input 
-          type="email" 
-          name="email" 
-          placeholder="Correo" 
-          onChange={this.onChangeHandler} 
-          value={this.state.email}
-          required/>
-
-        <button type="submit">Agregar Cliente</button>
-        <button onClick={this.props.dismiss}>Cancelar</button>
-        
+        <div>
+          <button 
+            className="btn btn-success" 
+            type="submit">Agregar Cliente</button>
+          <button 
+            className="btn btn-warning ml-1" 
+            onClick={this.props.dismiss}>Cancelar</button>
+        </div>  
       </form>
     )
   }

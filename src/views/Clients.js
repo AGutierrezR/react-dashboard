@@ -8,7 +8,7 @@ class Clients extends Component {
   state = {
     clients: null,
     form: null,
-    isEditing: false
+    isEditing: false,
   }
 
   componentDidMount() {
@@ -23,9 +23,9 @@ class Clients extends Component {
   }
 
   createClientHanlder = (client) => {
-    const {name, lastname, email} = client
+    const { name, lastname, email } = client
     axios
-      .post(axiosURL.clients, {name, lastname, email})
+      .post(axiosURL.clients, { name, lastname, email })
       .then((res) => {
         const clients = [...this.state.clients, res.data]
         this.setState({ clients })
@@ -36,21 +36,21 @@ class Clients extends Component {
   }
 
   updateClientHandler = (_client) => {
-    const {id, name, lastname, email} = _client
+    const { id, name, lastname, email } = _client
     axios
       .patch(axiosURL.clients + '/' + id, {
         name,
         lastname,
-        email
+        email,
       })
       .then((res) => {
-        this.setState(prevState => ({
+        this.setState((prevState) => ({
           clients: prevState.clients.map((client) => {
-            if(client.id === _client.id) {
+            if (client.id === _client.id) {
               client = _client
             }
             return client
-          })
+          }),
         }))
       })
       .catch(({ response }) => {
@@ -72,11 +72,11 @@ class Clients extends Component {
   }
 
   editHandler = (client) => {
-    this.setState({form: client, isEditing: true})
+    this.setState({ form: client, isEditing: true })
   }
 
   dismissEditHandler = () => {
-    this.setState({form: null, isEditing: false})
+    this.setState({ form: null, isEditing: false })
   }
 
   render() {
@@ -85,7 +85,7 @@ class Clients extends Component {
 
     if (this.state.clients) {
       clients = (
-        <table>
+        <table className="table table-striped table-hover mt-4 mb-5">
           <thead>
             <tr>
               {thClientArray.map((prop, key) => {
@@ -102,8 +102,16 @@ class Clients extends Component {
                   <td>{client.lastname}</td>
                   <td>{client.email}</td>
                   <td>
-                    <button onClick={() => this.editHandler(client)}>Editar</button>
-                    <button onClick={() => this.deleteClientHandler(client.id)}>
+                    <button
+                      className="btn btn-primary"
+                      onClick={() => this.editHandler(client)}
+                    >
+                      Editar
+                    </button> 
+                    <button
+                      className="btn btn-danger ml-1"
+                      onClick={() => this.deleteClientHandler(client.id)}
+                    >
                       Eliminar
                     </button>
                   </td>
@@ -117,21 +125,32 @@ class Clients extends Component {
 
     if (this.state.isEditing) {
       editForm = (
-        <ClientForm 
-          {...this.state.form} 
-          submit={(client) => {this.updateClientHandler(client)}}
-          dismiss={this.dismissEditHandler}/>
+        <ClientForm
+          {...this.state.form}
+          submit={(client) => {
+            this.updateClientHandler(client)
+          }}
+          dismiss={this.dismissEditHandler}
+        />
       )
     }
 
     return (
       <div className="content">
-        <h1>Clientes</h1>
-        <ClientForm 
-          submit={(client) => this.createClientHanlder(client)}
-          />
-        {clients}
-        {editForm}
+        <div className="container-fluid">
+          <div className="row">
+            <div className="col-md-12">
+              <h1>Clientes</h1>
+              <ClientForm
+                submit={(client) => this.createClientHanlder(client)}
+              />
+              <div className="table-responsive">
+                {clients} 
+              </div>
+              {editForm}
+            </div>
+          </div>
+        </div>
       </div>
     )
   }
