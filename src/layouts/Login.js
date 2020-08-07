@@ -12,7 +12,7 @@ import Login from '../components/Login/Login'
       <div>
         <div className="container pt-4">
           <div className="row justify-content-center">
-            <div className="col-12 col-md-4">
+            <div className="col-12 col-md-6">
               <h1>Bienvenido</h1>
               <Login successfulAuthHandler={this.successfulAuthHandler}/>
             </div>
