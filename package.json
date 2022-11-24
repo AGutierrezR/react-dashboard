@@ -9,8 +9,8 @@
     "preview": "vite preview",
     "test": "vitest",
     "prettier": "prettier --write .",
-    "lint": "eslint .",
-    "lint:fix": "eslint --fix .",
+    "lint": "eslint . --ext .js,.jsx",
+    "lint:fix": "eslint --fix . --ext .js,.jsx",
     "prepare": "husky install"
   },
   "dependencies": {
