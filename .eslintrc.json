@@ -1,0 +1,39 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "vitest-globals/env": true
+  },
+  "extends": [
+    "plugin:react/recommended",
+    "airbnb",
+    "plugin:vitest-globals/recommended",
+    "plugin:prettier/recommended"
+  ],
+  "overrides": [],
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "plugins": ["react", "prettier"],
+  "rules": {
+    // General Rules
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": [
+          "src/setupTest.js",
+          "**/*.test.jsx",
+          "vite.config.js"
+        ]
+      }
+    ],
+    "no-shadow": ["off"],
+    // React Rules
+    "react/jsx-uses-react": ["off"],
+    "react/react-in-jsx-scope": ["off"],
+    "react/jsx-no-target-blank": ["off"],
+    "react/jsx-one-expression-per-line": ["off"],
+    "react/button-has-type": ["off"]
+  }
+}
